@@ -8,6 +8,13 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
+  {
+    path: 'cliente',
+    //canActivate: [AuthGuard],version antigua
+    //canActivate:[auth2Guard],
+    loadChildren: () =>
+      import('./modules/cliente/cliente.module').then((m) => m.ClienteModule),
+  },
   { path: '**', component: NotFoundComponent },
 ];
 
