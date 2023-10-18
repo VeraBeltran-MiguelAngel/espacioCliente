@@ -8,6 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { MiMembresiaComponent } from './components/mi-membresia/mi-membresia.component';
+import { PagosComponent } from './components/pagos/pagos.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MiMembresiaComponent } from './components/mi-membresia/mi-membresia.com
     FooterComponent,
     HomeComponent,
     PerfilComponent,
-    MiMembresiaComponent
+    MiMembresiaComponent,
+    PagosComponent
   ],
   imports: [
     CommonModule,

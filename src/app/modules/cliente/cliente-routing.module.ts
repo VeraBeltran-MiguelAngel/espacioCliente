@@ -4,6 +4,7 @@ import { ClienteDashboardComponent } from './components/cliente-dashboard/client
 import { HomeComponent } from './components/home/home.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { MiMembresiaComponent } from './components/mi-membresia/mi-membresia.component';
+import { PagosComponent } from './components/pagos/pagos.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'perfil', component: PerfilComponent },
       { path: 'membresia', component: MiMembresiaComponent },
+      { path: 'pagos', component: PagosComponent },
       { path: '', redirectTo: '/cliente/home', pathMatch: 'full' },
     ],
   },
