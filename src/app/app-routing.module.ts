@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -10,8 +11,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   {
     path: 'cliente',
-    //canActivate: [AuthGuard],version antigua
-    //canActivate:[auth2Guard],
+    canActivate: [authGuard],
     loadChildren: () =>
       import('./modules/cliente/cliente.module').then((m) => m.ClienteModule),
   },
