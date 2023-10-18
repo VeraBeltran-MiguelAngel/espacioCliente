@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ClienteDashboardComponent } from './components/cliente-dashboard/cliente-dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { MiMembresiaComponent } from './components/mi-membresia/mi-membresia.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'perfil', component: PerfilComponent },
+      { path: 'membresia', component: MiMembresiaComponent },
       { path: '', redirectTo: '/cliente/home', pathMatch: 'full' },
     ],
   },
