@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -9,12 +10,16 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-  });
 
-  constructor(private auth: AuthService, private router: Router) {}
+  hide = true;
+  loginForm: FormGroup;
+
+  constructor(private auth: AuthService, private router: Router ,private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    })
+  }
 
   ngOnInit(): void {
     if (this.auth.isLoggedIn()) {
