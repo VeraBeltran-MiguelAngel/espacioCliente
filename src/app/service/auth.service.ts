@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of, tap, throwError } from 'rxjs';
 
 //para conectarse al api
 import { HttpClient } from '@angular/common/http';
@@ -16,22 +16,22 @@ export class AuthService {
   API: string = 'http://localhost/login/';
   constructor(private router: Router, private clienteHttp: HttpClient) {}
 
-  // setToken(token: string): void {
-  //   localStorage.setItem('token', token);
-  // }
+  setToken(token: string): void {
+    localStorage.setItem('token', token);
+  }
 
-  // getToken(): string | null {
-  //   return localStorage.getItem('token');
-  // }
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
 
-  // isLoggedIn() {
-  //   return this.getToken() !== null;
-  // }
+  isLoggedIn() {
+    return this.getToken() !== null;
+  }
 
-  // logout() {
-  //   localStorage.removeItem('token');
-  //   this.router.navigate(['login']);
-  // }
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['login']);
+  }
 
   //login con token
   // login({ email, password }: any): Observable<any> {
@@ -42,9 +42,9 @@ export class AuthService {
   //   return throwError(() => new Error('Error de autenticacion'));
   // }
 
-  //funciona como un insertar empleado
+  //funciona como un insertar empleado (observa la respuesta del api)
   login(datosUser: User): Observable<any> {
     //para enviar el json con los datos que manda el form para validarlos en el back
-    return this.clienteHttp.post(this.API + '?datos', datosUser);
+    return this.clienteHttp.post(this.API + '?datos', datosUser).pipe(tap());
   }
 }

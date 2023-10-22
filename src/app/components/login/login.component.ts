@@ -11,6 +11,8 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  User:any;
+
   hide = true;
   loginForm: FormGroup;
 
@@ -22,9 +24,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // if (this.auth.isLoggedIn()) {
-    //   this.router.navigate(['cliente']);
-    // }
+    if (this.auth.isLoggedIn()) {
+      this.router.navigate(['cliente']);
+    }
   }
 
   onSubmit(): void {
@@ -44,7 +46,10 @@ export class LoginComponent implements OnInit {
     //   });
     // }
 
-    this.auth.login(this.loginForm.value).subscribe();
-    this.router.navigate(['/cliente']);
+    //se suscribe para monitorear la respuesta del api
+    this.auth.login(this.loginForm.value).subscribe((respuesta)=>{
+      console.log(respuesta);
+      this.User=respuesta;
+    });
   }
 }
