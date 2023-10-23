@@ -13,7 +13,7 @@ import { User } from './User';
 })
 export class AuthService {
   //variable que guarda el endpoint
-  API: string = 'http://localhost/usuario/';
+  API: string = 'conf/';
   //para guardar los headers que manda el API
   httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
@@ -47,7 +47,7 @@ export class AuthService {
 
   login(credenciales: any): Observable<any> {
     return this.clienteHttp
-      .post(this.API + '?dato', credenciales, { headers: this.httpHeaders })
+      .post(this.API + '?credenciales', credenciales, { headers: this.httpHeaders })
       .pipe(
         catchError((err: any) => {
           if (err.status === 401) {
@@ -62,19 +62,7 @@ export class AuthService {
       );
   }
 
-  // enviarCredenciales(datosUser: User): Observable<any> {
-  //   return this.clienteHttp
-  //     .post<any>(this.API + '?datos', datosUser, { headers: this.httpHeaders })
-  //     .pipe(
-  //       catchError((error: any) => {
-  //         if (error.status === 401) {
-  //           return throwError(()=>error); // Devuelve un nuevo Observable de error
-  //         } else {
-  //           return throwError('Error desconocido'); // Puedes personalizar el mensaje de error
-  //         }
-  //       })
-  //     );
-  // }
+
 
   // enviarCredenciales(datosUser: User): Observable<any> {
   //   return this.clienteHttp
