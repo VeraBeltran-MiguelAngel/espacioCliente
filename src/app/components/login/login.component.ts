@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.auth.login(this.loginForm.value).subscribe({
         next: (respuesta) => {
+          alert('Iniciaste sesión');
           console.log(respuesta);
           localStorage.setItem('userData', JSON.stringify(respuesta));
           this.router.navigate(['/cliente']);
@@ -58,10 +59,5 @@ export class LoginComponent implements OnInit {
       });
     }
 
-    //se suscribe para monitorear la respuesta del api (ya que esta valida si son correctas o no)
-    // this.auth.enviarCredenciales(this.loginForm.value).subscribe((respuesta) => {
-    //   console.log(respuesta);
-    //   this.User = respuesta;
-    // });
   }
 }
