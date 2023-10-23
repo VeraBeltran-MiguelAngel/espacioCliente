@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   {
     path: 'cliente',
-   // canActivate: [authGuard],
+    canActivate: [authGuard],
     loadChildren: () =>
       import('./modules/cliente/cliente.module').then((m) => m.ClienteModule),
   },

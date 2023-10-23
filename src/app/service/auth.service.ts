@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of, tap, throwError } from 'rxjs';
+import { Observable, catchError, map, tap, throwError } from 'rxjs';
 
 //para conectarse al api
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 //modelo usuarios
 import { User } from './User';
@@ -13,15 +13,18 @@ import { User } from './User';
 })
 export class AuthService {
   //variable que guarda el endpoint
-  API: string = 'http://localhost/login/';
+  API: string = 'http://localhost/usuario/';
+  //para guardar los headers que manda el API
+  httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+
   constructor(private router: Router, private clienteHttp: HttpClient) {}
 
-  setToken(token: string): void {
-    localStorage.setItem('token', token);
-  }
+  // setToken(token: string): void {
+  //   localStorage.setItem('token', token);
+  // }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return localStorage.getItem('userData');
   }
 
   isLoggedIn() {
@@ -29,7 +32,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('userData');
     this.router.navigate(['login']);
   }
 
@@ -42,9 +45,61 @@ export class AuthService {
   //   return throwError(() => new Error('Error de autenticacion'));
   // }
 
-  //funciona como un insertar empleado (observa la respuesta del api)
-  login(datosUser: User): Observable<any> {
-    //para enviar el json con los datos que manda el form para validarlos en el back
-    return this.clienteHttp.post(this.API + '?datos', datosUser).pipe(tap());
+  login(credenciales: any): Observable<any> {
+    return this.clienteHttp
+      .post(this.API + '?dato', credenciales, { headers: this.httpHeaders })
+      .pipe(
+        catchError((err: any) => {
+          if (err.status === 401) {
+            this.router.navigate(['/login']);
+            const errorMessage = err.error.message;
+            alert(`Error 401: ${errorMessage}`);
+            return throwError(() => errorMessage);
+          }else{
+            return throwError(() => 'Error desconocido');
+          }
+        })
+      );
   }
+
+  // enviarCredenciales(datosUser: User): Observable<any> {
+  //   return this.clienteHttp
+  //     .post<any>(this.API + '?datos', datosUser, { headers: this.httpHeaders })
+  //     .pipe(
+  //       catchError((error: any) => {
+  //         if (error.status === 401) {
+  //           return throwError(()=>error); // Devuelve un nuevo Observable de error
+  //         } else {
+  //           return throwError('Error desconocido'); // Puedes personalizar el mensaje de error
+  //         }
+  //       })
+  //     );
+  // }
+
+  // enviarCredenciales(datosUser: User): Observable<any> {
+  //   return this.clienteHttp
+  //     .post<any>(this.API + '?datos', datosUser, { headers: this.httpHeaders })
+  //     .pipe(
+  //       tap((paramResponse) => {
+  //         let varArrayTapUser = paramResponse as User[];
+  //         console.log('ClienteService: tap 2');
+  //         varArrayTapUser.forEach((itemCliente) => {
+  //           //mostramos datos de cada cliente en el log
+  //           console.log(itemCliente.username);
+  //         });
+  //       })
+  //       catchError((error: any) => {
+  //         if (error.status === 401) {
+  //           this.router.navigate(['/login']);
+  //           // Si el código de respuesta es 401, el mensaje de error está en error.error.message
+  //           const errorMessage = error.error.message;
+  //           alert(`Error 401: ${errorMessage}`);
+  //           return throwError(() => errorMessage);
+  //         } else {
+  //           // Puedes personalizar el mensaje de error
+  //           return throwError(() => 'Error desconocido');
+  //         }
+  //       })
+  //     );
+  // }
 }
