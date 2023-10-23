@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit {
         next: (respuesta) => {
           alert('Iniciaste sesión');
           console.log(respuesta);
-          localStorage.setItem('userData', JSON.stringify(respuesta));
+          //guardamos el registro del usuario en el local storage
+          this.auth.setUserData(JSON.stringify(respuesta));
           this.router.navigate(['/cliente']);
         },
         error: (paramError) => {

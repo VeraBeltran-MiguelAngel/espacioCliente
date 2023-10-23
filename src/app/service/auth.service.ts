@@ -19,9 +19,9 @@ export class AuthService {
 
   constructor(private router: Router, private clienteHttp: HttpClient) {}
 
-  // setToken(token: string): void {
-  //   localStorage.setItem('token', token);
-  // }
+  setUserData(userData: string): void {
+    localStorage.setItem('userData', userData);
+  }
 
   getUserData(): string | null {
     return localStorage.getItem('userData');
@@ -45,7 +45,7 @@ export class AuthService {
   //   return throwError(() => new Error('Error de autenticacion'));
   // }
 
-  login(credenciales: any): Observable<any> {
+  login(credenciales: User): Observable<any> {
     return this.clienteHttp
       .post(this.API + '?credenciales', credenciales, { headers: this.httpHeaders })
       .pipe(
