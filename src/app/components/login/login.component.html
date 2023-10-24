@@ -20,10 +20,11 @@
                   autofocus=""
                   formControlName="username"
                 />
-                <mat-error *ngIf="['username']; hasError: 'required'"
-                  >Por favor ingresa tu correo</mat-error
-                >
+               
                 <mat-icon matSuffix>alternate_email</mat-icon>
+                <mat-error *ngIf="['username']; hasError: 'required'"
+                >Por favor ingresa tu correo</mat-error
+              >
               </mat-form-field>
             </p>
             <p>
@@ -48,8 +49,8 @@
                 </button>
 
                 <mat-error *ngIf="['password']; hasError: 'required'"
-                >Por favor ingresa tu contraseña</mat-error
-              >
+                  >Por favor ingresa tu contraseña</mat-error
+                >
               </mat-form-field>
             </p>
             <!-- <p class="txt_a"><a (click)="navegarPagina('olvide-contrasena')" class="txt_link">Olvide mi contraseña</a></p> -->
