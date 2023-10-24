@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SafeValue } from '@angular/platform-browser';//para redireccionar a una liga segura
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -10,7 +11,13 @@ export class HomeComponent implements OnInit {
 
   //para poder usar los valores del local(solo es un string) storage tienes que crear un arreglo
   usuarioRegistrado: any[] = [];
-  nombreUsuario :any;
+  nombreUsuario :string;
+  correo:string;
+
+   //para crear qr
+   qrdata :any;
+   qrCodeDownloadLink :SafeValue='';
+
 
   constructor(private auth: AuthService) {}
 
@@ -26,6 +33,13 @@ export class HomeComponent implements OnInit {
       this.usuarioRegistrado = JSON.parse(localData);
       //accedemos al indice 0 (por que solo es un registro) al indice name
       this.nombreUsuario = this.usuarioRegistrado[0].name;
+      this.correo=this.usuarioRegistrado[0].username;
+      this.qrdata=this.correo; //guardamos el correo del usuario que inicia sesion en el QR 
+    
     }
+  }
+
+  onChange(url:any){
+    this.qrCodeDownloadLink = url;
   }
 }

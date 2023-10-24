@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <body>
-   
-    <div class="container mt-4" >
-        <h1 class="mb-3">Bienvenido {{nombreUsuario}}</h1>
+    <div class="container mt-4">
+      <h1 class="mb-3">Bienvenido {{ nombreUsuario }}</h1>
       <div class="row">
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Membresia basica</h5>
               <p class="card-text">Estatus actual de mi membresia</p>
-              <a class="btn btn-primary"routerLink="../membresia">Detalles</a>
+              <a class="btn btn-primary" routerLink="../membresia">Detalles</a>
             </div>
           </div>
         </div>
@@ -49,9 +48,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Tu gimnasio</h5>
-              <p class="card-text">
-               Las hadas
-              </p>
+              <p class="card-text">Las hadas</p>
               Av. de las torres # 45 Colonia las hadas Puebla Puebla
             </div>
             <a class="btn btn-primary">Quieres cambiar de ubicacion?</a>
@@ -63,9 +60,14 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Otra Información</h5>
+              <h5 class="card-title">Tu codigo de acceso</h5>
+              <a [href]="qrCodeDownloadLink">Descargar</a>
               <p class="card-text">
-                Cualquier otro detalle relevante del cliente.
+                <qrcode
+                  (qrCodeURL)="onChange($event)"
+                  [qrdata]="qrdata"
+                  [width]="100"
+                ></qrcode>
               </p>
             </div>
           </div>

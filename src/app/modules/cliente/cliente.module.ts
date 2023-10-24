@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { MiMembresiaComponent } from './components/mi-membresia/mi-membresia.component';
 import { PagosComponent } from './components/pagos/pagos.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { PagosComponent } from './components/pagos/pagos.component';
   ],
   imports: [
     CommonModule,
-    ClienteRoutingModule
+    ClienteRoutingModule,
+    QRCodeModule //para poder usar QR dentro del modulo ciente (solo aplica a sus vistas)
   ]
 })
 export class ClienteModule { }
