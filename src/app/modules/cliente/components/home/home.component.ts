@@ -7,33 +7,25 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  perfilRegistrado: any;
-  jsonperfil: any;
-  name: any;
+
+  //para poder usar los valores del local(solo es un string) storage tienes que crear un arreglo
+  usuarioRegistrado: any[] = [];
+  nombreUsuario :any;
 
   constructor(private auth: AuthService) {}
-  ngOnInit(): void {
-    //guardamos la cadena json
-    this.perfilRegistrado = this.auth.getUserData();
 
-    if (this.perfilRegistrado) {
-      //lo convertimos a json nuevamente
-      this.jsonperfil = JSON.parse(this.perfilRegistrado);
+  ngOnInit() {
+    //para activar el debug en consola
+    // debugger;
 
-      const name = this.jsonperfil.name;
+    //guardar la cadena del local storage (contiene la info del usuario)
+    const localData = this.auth.getUserData(); 
 
-      console.log('Nombre:', name);
-    } else {
-      console.log('No se encontraron datos en el localStorage.');
+    if (localData != null) {
+      //convertimos la cadena en arreglo y lo guardamos en usuarioRegistrado
+      this.usuarioRegistrado = JSON.parse(localData);
+      //accedemos al indice 0 (por que solo es un registro) al indice name
+      this.nombreUsuario = this.usuarioRegistrado[0].name;
     }
-
-    // this.name=Object.keys(this.jsonperfil)[1];
-    // alert('el nombre del usuario es :'+ this.name);
-
-    // console.log(Object.keys(this.jsonperfil));
-
-    //     var miVariable = { test: {typeA: '501', typeB : '502' } };;
-    // var resultado = Object.keys(miVariable)[0]; // Sera el valor del key test
-    // alert(resultado);
   }
 }

@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 
@@ -15,13 +10,8 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class LoginComponent implements OnInit {
   User: any;
-
   hide = true;
   loginForm: FormGroup;
-
-  // usuarioRegistrado: any[] = [];
-  // objetoRegistro: any = { username: '', password: '' };
-  // loginObj: any = { username: '', password: '' };
 
   constructor(
     private auth: AuthService,
@@ -55,10 +45,9 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/cliente']);
         },
         error: (paramError) => {
-          alert('Error subscribe: ' + paramError);
+         console.error('Error subscribe: ' + paramError);
         },
       });
     }
-
   }
 }

@@ -13,13 +13,16 @@
               <mat-form-field appearance="outline" class="inputs_css">
                 <mat-label>Email</mat-label>
                 <input
-                  type="text"
+                  type="email"
                   matInput
                   placeholder="Email"
                   autocomplete="off"
                   autofocus=""
                   formControlName="username"
                 />
+                <mat-error *ngIf="['username']; hasError: 'required'"
+                  >Por favor ingresa tu correo</mat-error
+                >
                 <mat-icon matSuffix>alternate_email</mat-icon>
               </mat-form-field>
             </p>
@@ -27,7 +30,6 @@
               <mat-form-field appearance="outline" class="inputs_css">
                 <mat-label>Contraseña</mat-label>
                 <input
-                  matInput
                   matInput
                   [type]="hide ? 'password' : 'text'"
                   placeholder="Contraseña"
@@ -44,6 +46,10 @@
                     hide ? "visibility_off" : "visibility"
                   }}</mat-icon>
                 </button>
+
+                <mat-error *ngIf="['password']; hasError: 'required'"
+                >Por favor ingresa tu contraseña</mat-error
+              >
               </mat-form-field>
             </p>
             <!-- <p class="txt_a"><a (click)="navegarPagina('olvide-contrasena')" class="txt_link">Olvide mi contraseña</a></p> -->

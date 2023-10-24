@@ -63,31 +63,4 @@ export class AuthService {
   }
 
  
-
-  // enviarCredenciales(datosUser: User): Observable<any> {
-  //   return this.clienteHttp
-  //     .post<any>(this.API + '?datos', datosUser, { headers: this.httpHeaders })
-  //     .pipe(
-  //       tap((paramResponse) => {
-  //         let varArrayTapUser = paramResponse as User[];
-  //         console.log('ClienteService: tap 2');
-  //         varArrayTapUser.forEach((itemCliente) => {
-  //           //mostramos datos de cada cliente en el log
-  //           console.log(itemCliente.username);
-  //         });
-  //       })
-  //       catchError((error: any) => {
-  //         if (error.status === 401) {
-  //           this.router.navigate(['/login']);
-  //           // Si el código de respuesta es 401, el mensaje de error está en error.error.message
-  //           const errorMessage = error.error.message;
-  //           alert(`Error 401: ${errorMessage}`);
-  //           return throwError(() => errorMessage);
-  //         } else {
-  //           // Puedes personalizar el mensaje de error
-  //           return throwError(() => 'Error desconocido');
-  //         }
-  //       })
-  //     );
-  // }
 }
