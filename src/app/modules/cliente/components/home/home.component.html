@@ -1,88 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-  <body>
-   
-    <div class="container mt-4" >
-        <h1 class="mb-3">Bienvenido {{nombreUsuario}}</h1>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Membresia basica</h5>
-              <p class="card-text">Estatus actual de mi membresia</p>
-              <a class="btn btn-primary"routerLink="../membresia">Detalles</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Detalles de proximo pago</h5>
-              <p class="card-text">
-                Tu cuota mensual para Noviembre es $300 Vencimiento 10/11/2023
-              </p>
-              <a class="btn btn-primary" routerLink="../pagos">Detalles</a>
-            </div>
+<div class="body">
+  <!--SE AGREGA EL HEADER-->
+  <div class="header_component">
+      <app-header></app-header>
+  </div>
+
+  <div class="container mt-4">
+      <h1 class="mb-3">Inicio</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Membresia basica</h5>
+            <p class="card-text">Estatus actual de mi membresia</p>
+            <a class="btn btn-gym" routerLink="../membresia">Detalles</a>
           </div>
         </div>
       </div>
-      <br />
-
-      <h3>Mi plan adquirido</h3>
-
-      <div class="row mt-4">
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Beneficios de tu plan</h5>
-              <p class="card-text">Area de peso libre y peso integrado</p>
-              <br />
-              <p>Acceso ilimitado</p>
-              <br />
-
-              Sin multa por cancelación
-            </div>
-            <a class="btn btn-primary">Detalles</a>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Tu gimnasio</h5>
-              <p class="card-text">
-               Las hadas
-              </p>
-              Av. de las torres # 45 Colonia las hadas Puebla Puebla
-            </div>
-            <a class="btn btn-primary">Quieres cambiar de ubicacion?</a>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Detalles de proximo pago</h5>
+            <p class="card-text">
+              Tu cuota mensual para Noiembre es $300 Vencimiento 10/11/2023
+            </p>
+            <a class="btn btn-gym" routerLink="../pagos">Detalles</a>
           </div>
         </div>
       </div>
+    </div>
+    <br />
 
-      <div class="row mt-4">
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Otra Información</h5>
-              <p class="card-text">
-                Cualquier otro detalle relevante del cliente.
-              </p>
-            </div>
+    <h3>Mi plan adquirido</h3>
+
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Beneficios de tu plan</h5>
+            <p class="card-text">Area de peso libre y peso integrado</p>
+            <br />
+            <p>Acceso ilimitado</p>
+            <br />
+
+            Sin multa por cancelación
           </div>
+          <a class="btn btn-gym">Detalles</a>
         </div>
-        <!-- <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Notas</h5>
-              <p class="card-text">
-                Notas y observaciones adicionales sobre el cliente.
-              </p>
-            </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Tu gimnasio</h5>
+            <p class="card-text">
+             Las hadas
+            </p>
+            Av. de las torres # 45 Colonia las hadas Puebla Puebla
           </div>
-        </div> -->
+          <a class="btn btn-gym">Quieres cambiar de ubicacion?</a>
+        </div>
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha2/dist/js/bootstrap.min.js"></script>
-  </body>
-</html>
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Credencial de acceso.</h5>
+            <div class="content-img">
+              <img src="../../../assets/img/profile-img/frame.png" alt="" class="qr_image">
+            </div>
+            <p class="qr-text">
+              Recuerda que no compartir tus accesos, Olympus gym no se hace responsable por le mal uso del mismo.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Notas</h5>
+            <p class="card-text">
+              Notas y observaciones adicionales sobre el cliente.
+            </p>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+  <!--SE AGREGA EL FOOTER-->
+  <div class="footer_component">
+      <app-footer></app-footer>
+  </div>
+</div>
