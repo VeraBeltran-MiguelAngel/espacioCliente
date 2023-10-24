@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, catchError, map, tap, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 //para conectarse al api
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 //modelo usuarios
 import { User } from './User';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -17,11 +18,11 @@ export class AuthService {
   //para guardar los headers que manda el API
   httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  constructor(private router: Router, private clienteHttp: HttpClient) {}
+  constructor(private router: Router, private clienteHttp: HttpClient, private toastr:ToastrService) {}
 
-  // setToken(token: string): void {
-  //   localStorage.setItem('token', token);
-  // }
+  setUserData(userData: string): void {
+    localStorage.setItem('userData', userData);
+  }
 
   getUserData(): string | null {
     return localStorage.getItem('userData');
@@ -45,7 +46,7 @@ export class AuthService {
   //   return throwError(() => new Error('Error de autenticacion'));
   // }
 
-  login(credenciales: any): Observable<any> {
+  login(credenciales: User): Observable<any> {
     return this.clienteHttp
       .post(this.API + '?credenciales', credenciales, { headers: this.httpHeaders })
       .pipe(
@@ -53,7 +54,8 @@ export class AuthService {
           if (err.status === 401) {
             this.router.navigate(['/login']);
             const errorMessage = err.error.message;
-            alert(`Error 401: ${errorMessage}`);
+            // this.toastr.error(errorMessage,'Error');
+          //  alert(`Error 401: ${errorMessage}`);
             return throwError(() => errorMessage);
           }else{
             return throwError(() => 'Error desconocido');
@@ -63,31 +65,4 @@ export class AuthService {
   }
 
 
-
-  // enviarCredenciales(datosUser: User): Observable<any> {
-  //   return this.clienteHttp
-  //     .post<any>(this.API + '?datos', datosUser, { headers: this.httpHeaders })
-  //     .pipe(
-  //       tap((paramResponse) => {
-  //         let varArrayTapUser = paramResponse as User[];
-  //         console.log('ClienteService: tap 2');
-  //         varArrayTapUser.forEach((itemCliente) => {
-  //           //mostramos datos de cada cliente en el log
-  //           console.log(itemCliente.username);
-  //         });
-  //       })
-  //       catchError((error: any) => {
-  //         if (error.status === 401) {
-  //           this.router.navigate(['/login']);
-  //           // Si el código de respuesta es 401, el mensaje de error está en error.error.message
-  //           const errorMessage = error.error.message;
-  //           alert(`Error 401: ${errorMessage}`);
-  //           return throwError(() => errorMessage);
-  //         } else {
-  //           // Puedes personalizar el mensaje de error
-  //           return throwError(() => 'Error desconocido');
-  //         }
-  //       })
-  //     );
-  // }
 }

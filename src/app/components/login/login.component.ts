@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -14,22 +10,17 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  User: any;
-
   hide = true;
   loginForm: FormGroup;
-
-  // usuarioRegistrado: any[] = [];
-  // objetoRegistro: any = { username: '', password: '' };
-  // loginObj: any = { username: '', password: '' };
 
   constructor(
     private auth: AuthService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      username: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
@@ -48,16 +39,33 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.auth.login(this.loginForm.value).subscribe({
         next: (respuesta) => {
-          alert('Iniciaste sesión');
+          this.toastr.success('Bienvenido', '', {
+            positionClass: 'toast-bottom-left',
+          });
           console.log(respuesta);
-          localStorage.setItem('userData', JSON.stringify(respuesta));
+          //guardamos el registro del usuario en el local storage
+          this.auth.setUserData(JSON.stringify(respuesta));
           this.router.navigate(['/cliente']);
         },
         error: (paramError) => {
-          alert('Error subscribe: ' + paramError);
+          this.toastr.error(paramError, 'Error', {
+            positionClass: 'toast-bottom-left',
+          });
         },
       });
     }
+  }
 
+  getErrorMessage() {
+    const usernameControl = this.loginForm.get('username');
+    if (usernameControl) {
+      if (usernameControl.hasError('required')) {
+        return 'Por favor ingresa tu correo';
+      }
+      if (usernameControl.hasError('email')) {
+        return 'Por favor ingresa un correo valido';
+      }
+    }
+    return '';
   }
 }
