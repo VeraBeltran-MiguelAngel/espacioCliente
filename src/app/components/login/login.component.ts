@@ -9,9 +9,9 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  User: any;
   hide = true;
   loginForm: FormGroup;
+
 
   constructor(
     private auth: AuthService,
@@ -19,9 +19,10 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      username: ['',[Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
+    
   }
 
   ngOnInit(): void {
@@ -45,9 +46,23 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/cliente']);
         },
         error: (paramError) => {
-         console.error('Error subscribe: ' + paramError);
+          console.error('Error subscribe: ' + paramError);
         },
       });
     }
+  }
+
+
+  getErrorMessage() {
+    const usernameControl = this.loginForm.get('username');
+    if (usernameControl) {
+      if (usernameControl.hasError('required')) {
+        return 'Por favor ingresa tu correo';
+      }
+      if (usernameControl.hasError('email')) {
+        return 'Por favor ingresa un correo valido';
+      }
+    }
+    return '';
   }
 }
