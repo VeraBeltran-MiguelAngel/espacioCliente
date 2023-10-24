@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
       //convertimos la cadena en arreglo y lo guardamos en usuarioRegistrado
       this.usuarioRegistrado = JSON.parse(localData);
       //accedemos al indice 0 (por que solo es un registro) al indice name
-      this.nombreUsuario = this.usuarioRegistrado[0].name;
+      this.nombreUsuario = this.usuarioRegistrado[0].nombre;
     }
   }
 }
