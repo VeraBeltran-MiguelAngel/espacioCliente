@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -12,17 +13,16 @@ export class LoginComponent implements OnInit {
   hide = true;
   loginForm: FormGroup;
 
-
   constructor(
     private auth: AuthService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) {
     this.loginForm = this.fb.group({
-      username: ['',[Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
-    
   }
 
   ngOnInit(): void {
@@ -39,19 +39,22 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.auth.login(this.loginForm.value).subscribe({
         next: (respuesta) => {
-          alert('Iniciaste sesión');
+          this.toastr.success('Bienvenido', '', {
+            positionClass: 'toast-bottom-left',
+          });
           console.log(respuesta);
           //guardamos el registro del usuario en el local storage
           this.auth.setUserData(JSON.stringify(respuesta));
           this.router.navigate(['/cliente']);
         },
         error: (paramError) => {
-          console.error('Error subscribe: ' + paramError);
+          this.toastr.error(paramError, 'Error', {
+            positionClass: 'toast-bottom-left',
+          });
         },
       });
     }
   }
-
 
   getErrorMessage() {
     const usernameControl = this.loginForm.get('username');

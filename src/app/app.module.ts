@@ -15,6 +15,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 
+import { ToastrModule } from 'ngx-toastr';
+
+
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatInputModule,
     MatButtonModule,
     HttpClientModule,
-    NgIf
+    NgIf,
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]

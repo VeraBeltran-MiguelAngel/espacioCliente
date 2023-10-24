@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, catchError, map, tap, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 //para conectarse al api
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 //modelo usuarios
 import { User } from './User';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class AuthService {
   //para guardar los headers que manda el API
   httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  constructor(private router: Router, private clienteHttp: HttpClient) {}
+  constructor(private router: Router, private clienteHttp: HttpClient, private toastr:ToastrService) {}
 
   setUserData(userData: string): void {
     localStorage.setItem('userData', userData);
@@ -53,7 +54,8 @@ export class AuthService {
           if (err.status === 401) {
             this.router.navigate(['/login']);
             const errorMessage = err.error.message;
-            alert(`Error 401: ${errorMessage}`);
+            // this.toastr.error(errorMessage,'Error');
+          //  alert(`Error 401: ${errorMessage}`);
             return throwError(() => errorMessage);
           }else{
             return throwError(() => 'Error desconocido');
