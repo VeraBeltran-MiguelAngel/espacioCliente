@@ -30,7 +30,7 @@ import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
   imports: [
     CommonModule,
     ClienteRoutingModule,
-    QRCodeModule //para poder usar QR dentro del modulo ciente (solo aplica a sus vistas)
+    QRCodeModule, //para poder usar QR dentro del modulo ciente (solo aplica a sus vistas)
     MatToolbarModule,
     FontAwesomeModule
   ]
