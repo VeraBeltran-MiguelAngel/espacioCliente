@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div class="container mt-4">
+      <h1 class="mb-3">Bienvenido {{ nombreUsuario }}</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Membresia basica</h5>
+              <p class="card-text">Estatus actual de mi membresia</p>
+              <a class="btn btn-primary" routerLink="../membresia">Detalles</a>
+            </div>
 <div class="body">
   <!--SE AGREGA EL HEADER-->
   <div class="header_component">
@@ -46,6 +59,14 @@
           </div>
           <a class="btn btn-gym">Detalles</a>
         </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Tu gimnasio</h5>
+              <p class="card-text">Las hadas</p>
+              Av. de las torres # 45 Colonia las hadas Puebla Puebla
+            </div>
+            <a class="btn btn-primary">Quieres cambiar de ubicacion?</a>
       </div>
       <div class="col-md-6">
         <div class="card">
@@ -60,7 +81,19 @@
         </div>
       </div>
     </div>
-
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Tu codigo de acceso</h5>
+              <a [href]="qrCodeDownloadLink">Descargar</a>
+              <p class="card-text">
+                <qrcode
+                  (qrCodeURL)="onChange($event)"
+                  [qrdata]="qrdata"
+                  [width]="100"
+                ></qrcode>
+              </p>
     <div class="row mt-4">
       <div class="col-md-6">
         <div class="card">
