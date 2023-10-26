@@ -13,8 +13,8 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root',
 })
 export class AuthService {
-  //variable que guarda el endpoint
-  API: string = 'conf/';
+  //variable que guarda el endpoint en el srver API: string = 'conf/';
+  API: string = 'http://localhost/login/';
   //para guardar los headers que manda el API
   httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
