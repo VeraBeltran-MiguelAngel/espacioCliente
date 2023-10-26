@@ -16,6 +16,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 
 import { ToastrModule } from 'ngx-toastr';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -39,7 +40,8 @@ import { ToastrModule } from 'ngx-toastr';
     MatButtonModule,
     HttpClientModule,
     NgIf,
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot(),
+    FontAwesomeModule, // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]
