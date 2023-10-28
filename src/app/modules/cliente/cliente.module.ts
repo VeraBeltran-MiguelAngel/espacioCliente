@@ -16,6 +16,25 @@ import { faFacebook, faGoogle, faInstagram, faPaypal, faTwitter, faXTwitter } fr
 import { faCheckCircle, faCircleUser, faCreditCard } from '@fortawesome/free-regular-svg-icons';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {
+  FaIconLibrary,
+  FontAwesomeModule,
+} from '@fortawesome/angular-fontawesome';
+import {
+  faFacebook,
+  faGoogle,
+  faInstagram,
+  faPaypal,
+  faTwitter,
+  faXTwitter,
+} from '@fortawesome/free-brands-svg-icons';
+import {
+  faCheckCircle,
+  faCircleUser,
+  faCreditCard,
+} from '@fortawesome/free-regular-svg-icons';
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   declarations: [
@@ -25,20 +44,30 @@ import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
     HomeComponent,
     PerfilComponent,
     MiMembresiaComponent,
-    PagosComponent
+    PagosComponent,
   ],
   imports: [
     CommonModule,
     ClienteRoutingModule,
     QRCodeModule, //para poder usar QR dentro del modulo ciente (solo aplica a sus vistas)
     MatToolbarModule,
-    FontAwesomeModule
-  ]
+    FontAwesomeModule,
+  ],
 })
 export class ClienteModule {
   constructor(library: FaIconLibrary) {
     library.addIcons(
-      faFacebook, faGoogle, faInstagram, faTwitter, faCircleUser, faCreditCard, faPaypal, faXTwitter, faCheckCircle, faPowerOff
-    ); 
+      faFacebook,
+      faGoogle,
+      faInstagram,
+      faTwitter,
+      faCircleUser,
+      faCreditCard,
+      faPaypal,
+      faXTwitter,
+      faCheckCircle,
+      faPowerOff
+    );
   }
- }
+}
+
