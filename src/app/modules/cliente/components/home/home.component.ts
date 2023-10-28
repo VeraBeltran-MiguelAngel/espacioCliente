@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
       this.nombreUsuario = this.usuarioRegistrado[0].nombre;
       this.correo=this.usuarioRegistrado[0].email;
       this.qrdata=this.correo; //guardamos el correo del usuario que inicia sesion en el QR 
-    
+      this.nombreUsuario = this.usuarioRegistrado[0].nombre;
     }
   }
 
