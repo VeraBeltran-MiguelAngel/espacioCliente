@@ -60,7 +60,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Tu codigo de acceso</h5>
-              <a [href]="qrCodeDownloadLink">Descargar</a>
+              <a [href]="qrCodeDownloadLink" download="codigo-qr.png">Descarga tu codigo</a>
               <p class="card-text">
                 <qrcode
                   (qrCodeURL)="onChange($event)"
