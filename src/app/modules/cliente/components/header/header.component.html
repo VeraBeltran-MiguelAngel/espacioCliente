@@ -1,30 +1,27 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="#">Panel cliente</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item" routerLinkActive="active">
-                    <a class="nav-link" routerLink="./home">Home
-                        <!-- <span class="sr-only">(actual)</span> -->
-                    </a>
-                </li>
-                <li class="nav-item" routerLinkActive="active">
-                    <a class="nav-link" routerLink="./perfil">Perfil</a>
-                </li>
-                 <li class="nav-item" routerLinkActive="active">
-                    <a class="nav-link" routerLink="./membresia">Membresia</a>
-                </li>
-                <li class="nav-item" routerLinkActive="active">
-                    <a class="nav-link" routerLink="./pagos">Pagos</a>
-                </li> 
-                <li><a name="" id="" class="btn btn-primary" href="#" role="button" (click)="logout()"> Cerrar sesion</a></li>
-
-
-            </ul>
-        </div>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">    
+            <img src="../../../../../assets/img/logo.jpeg" class="img_logo">
+      <button mat-fab class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background: #FD9727; color: white;">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item" id="ops" >
+            <a class="nav-link" id="prueba" routerLink="./home" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">Inicio</a>
+          </li>
+          <li class="nav-item" id="ops" >
+            <a class="nav-link" id="prueba" routerLink="./perfil" routerLinkActive="active">Perfil</a>
+          </li>
+          <li class="nav-item" id="ops">
+            <a class="nav-link" id="prueba" routerLink="./membresia" routerLinkActive="active">Membresia</a>
+          </li>
+          <li class="nav-item" id="ops">
+            <a class="nav-link" id="prueba" routerLink="./pagos" routerLinkActive="active">Pagos</a>
+          </li>
+          <li class="nav-item" id="ops">
+            <a class="nav-link" (click)="logout()" id="prueba">Cerrar sesión</a>
+          </li>
+        </ul>
+      </div>
     </div>
-</nav>
+  </nav>

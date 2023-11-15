@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AuthService {
   //variable que guarda el endpoint
-  API: string = 'conf/';
+  API: string = 'https://olympus.arvispace.com/espacioCliente/conf/';
   //para guardar los headers que manda el API
   httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
