@@ -1,0 +1,15 @@
+.inputs_properties {
+    width: 500px;
+}
+
+/*Propiedades otros iconos */
+#icon_txt {
+    color: #FD9727;
+}
+
+/* pro piedades btn*/
+.btn-gym {
+    background: #FD9727; 
+    color: white;
+    text-decoration: none;
+}

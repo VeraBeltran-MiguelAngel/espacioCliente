@@ -1,0 +1,60 @@
+<div class="container my-5">
+    <h5 class="mb-3">Detalles de tu membresia</h5>
+    <div class="row">
+        <div class="row data_content" *ngFor="let dato of dataMem">
+            <label class="txt_title">{{dato.titulo}}</label>
+            <div class="col-md-5">
+                <label class="txt_subt">
+                    Costos.
+                </label>
+                <label class="txt_info"><fa-icon id="icon_txt" [icon]="['fas', 'check']"></fa-icon>
+                    Tu membresia tiene una duracion de {{dato.duracion}} meses.
+                </label>
+                <hr>
+                <label class="txt_info"><fa-icon id="icon_txt" [icon]="['fas', 'check']"></fa-icon>
+                    El pago mensual correspondiente a la membresia es de $ {{dato.precio}}.
+                </label>
+                <hr>
+            </div>
+            <div class="col-md-6">
+                <!--Datos tabla Membresia-->
+                <label class="txt_subt">
+                    Con tu membrecia podrás disfrutar de...
+                </label>
+                <label class="txt_info">
+                    <fa-icon id="icon_txt" [icon]="['fas', 'check']"></fa-icon>
+                    {{dato.detalles}}
+                </label>
+                <hr>
+                <label class="txt_info" *ngIf="dato.entrenador != 'No'"><fa-icon id="icon_txt"
+                        [icon]="['fas', 'check']"></fa-icon>
+                    Contaras con entrenador personal, con ello obtendras mejores reultados.</label>
+                <hr *ngIf="dato.entrenador != 'No'">
+                <label class="txt_info" *ngIf="dato.ofertas != 'No'"><fa-icon id="icon_txt"
+                        [icon]="['fas', 'check']"></fa-icon>
+                    Tu membresia te da a acceso a promociones exclusivas dentro de O´lympusGym.</label>
+                <hr *ngIf="dato.ofertas != 'No'">
+                <label class="txt_info" *ngIf="dato.canchaAcc != 'No'"><fa-icon id="icon_txt"
+                        [icon]="['fas', 'check']"></fa-icon>
+                    Tu membresia te da acceso a las canchas de la sucursal seleccionada.</label>
+                <hr *ngIf="dato.canchaAcc != 'No'">
+                <label class="txt_info" *ngIf="dato.albercaAcc != 'No'"><fa-icon id="icon_txt"
+                        [icon]="['fas', 'check']"></fa-icon>
+                    Tu membresia te da el acceso a la alberca de la sucursal seleccionada.</label>
+                <hr *ngIf="dato.albercaAcc != 'No'">
+                <!--Datos tabla Gimnasio-->
+                <label class="txt_subt">
+                    En tu gimnasio puedes hacer uso de...
+                </label>
+                <label class="txt_info" *ngIf="dato.casilleros == '1'"><fa-icon id="icon_txt"
+                        [icon]="['fas', 'check']"></fa-icon> Casilleros</label>
+                <label class="txt_info" *ngIf="dato.bicicletero == '1'"><fa-icon id="icon_txt"
+                        [icon]="['fas', 'check']"></fa-icon> Bicicletero</label>
+                <label class="txt_info" *ngIf="dato.estacionamiento == '1'"><fa-icon id="icon_txt"
+                        [icon]="['fas', 'check']"></fa-icon> Estacionamiento</label>
+                <label class="txt_info" *ngIf="dato.regaderas == '1'"><fa-icon id="icon_txt"
+                        [icon]="['fas', 'check']"></fa-icon> Regaderas</label>
+            </div>
+        </div>
+    </div>
+</div>

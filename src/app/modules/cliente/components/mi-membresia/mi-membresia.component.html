@@ -1,13 +1,14 @@
 <div class="body">
-    
+
     <div class="container mt-5">
-        <h1>Membresia basica</h1>
+        <h2>Detalle de tu membresia</h2>
         <div class="table-responsive">
-            <table class="table">
+
+            <table class="table" *ngFor="let item of datos">
                 <tbody>
                     <tr>
                         <th>Tipo de Membresía</th>
-                        <td>Basica</td>
+                        <td> {{ item.titulo }} </td>
                     </tr>
                     <tr>
                         <th>Duración</th>
@@ -15,69 +16,43 @@
                     </tr>
                     <tr>
                         <th>Fecha de Inicio</th>
-                        <td>15 de octubre de 2023</td>
+                        <td>{{item.fechaInicio}}</td>
                     </tr>
                     <tr>
                         <th>Precio</th>
-                        <td>$300</td>
+                        <td>$ {{item.precio}}</td>
                     </tr>
-                    <tr>
-                        <th>Horario de Acceso</th>
-                        <td>De Lunes a Viernes de 6am - 11pm, Sabados 8am - 6pm</td>
-                    </tr>
-                    <!-- <tr>
-                        <th>Clases Incluidas</th>
-                        <td>Yoga, Spinning, Zumba</td>
-                    </tr> -->
-                </tbody>
             </table>
+
+            <h6>Horario de sucursal/gimnasio</h6>
+            <div class="d-flex flex-row justify-content-center alig-items-center">
+                <div class="alert alert-secondary" role="alert" *ngFor="let hora of horarios" id="content_hrs">
+                    <label id="hrs_title"><strong>{{ hora.diaSemana}}</strong></label>
+                    <label id="hrs_sub"><strong>Apertura: </strong> {{ hora.horaEntrada }}</label>
+                    <label id="hrs_sub"><strong>Cierre: </strong> {{hora.horaSalida}} </label>
+                </div>
+            </div>
         </div>
     </div>
 
 
 
     <div class="container mt-5">
-        <h1>Mira los beneficios del plan premium</h1>
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Característica</th>
-                        <th>Descripción</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>Tipo de Membresía</th>
-                        <td>Gold</td>
-                    </tr>
-                    <tr>
-                        <th>Duración</th>
-                        <td>Mensual</td>
-                    </tr>
-                    <tr>
-                        <th>Precio</th>
-                        <td>$600</td>
-                    </tr>
-                    <tr>
-                        <th>Horario de Acceso</th>
-                        <td>24/7</td>
-                    </tr>
-                    <!-- <tr>
-                        <th>Clases Incluidas</th>
-                        <td>Yoga, Spinning, Zumba</td>
-                    </tr> -->
-                    <tr>
-                        <th>Acceso a dietas personalizadas</th>
-                        <td>Incluido</td>
-                    </tr>
-                    <tr>
-                        <th>Descuento Adicional</th>
-                        <td>10% en cada mes</td>
-                    </tr>
-                </tbody>
-            </table>
+        <h4>Te pueden interesar.</h4>
+        <div class="d-flex flex-row justify-content-center alig-items-center py-5 ">
+            <div *ngFor="let membresia of membresias">
+                <div class="alert alert-light content_membresia" role="alert" *ngIf="membresia.titulo != nomGymActual">
+                    <label class="title_m"> {{ membresia.titulo }} </label>
+                    <label class="price_m">$ {{ membresia.precio }}.00 </label>
+                    <div class="content_info">
+                        <label class="time_m">Cuenta con una duración de {{ membresia.duracion }} meses.</label>
+                        <label class="details_m">Aqui podras disfrutar de {{ membresia.detalles }} </label>
+                    </div>
+                    <a href="#" class="btn">Más info.</a>
+                </div>
+            </div>
+
         </div>
     </div>
-    
+
 </div>

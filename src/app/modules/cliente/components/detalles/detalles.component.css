@@ -1,0 +1,27 @@
+.data_content{
+    border-radius: 15px;
+    padding: 30px;
+    background-color: #F2F2F2;
+}
+
+.txt_title {
+    display: block;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.txt_subt {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0px;
+}
+
+.txt_info {
+    display: block;
+}
+
+#icon_txt {
+    color: green;
+    font-weight: bolder;
+}

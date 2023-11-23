@@ -18,6 +18,11 @@ export class HomeComponent implements OnInit {
    qrdata :any;
    qrCodeDownloadLink :SafeValue='';
 
+  //Variable que contendra los datos retornados por el servicio datosUsuario
+  datos: any;
+
+  //Mostrar el status de la membresia conforme al status 1/0
+  estado: boolean;
 
   constructor(private auth: AuthService) {}
 
@@ -37,6 +42,21 @@ export class HomeComponent implements OnInit {
       this.qrdata=this.correo; //guardamos el correo del usuario que inicia sesion en el QR 
       this.nombreUsuario = this.usuarioRegistrado[0].nombre;
     }
+
+    //console.log(this.usuarioRegistrado);
+    //Mandar a traer los datos del usuario/gymnasio/membresia/...
+    this.auth.datosUsuario(this.usuarioRegistrado[0].ID_Cliente).subscribe({ 
+      next: (resultData) => {
+        this.datos = resultData;
+        //console.log(this.datos);
+        
+        //Mostrar mensaje deacuerdo al estatus del status de la membresia del usuario
+        this.datos[0].estatus == '1' ? this.estado=true : this.estado = false;
+
+      },error: (error) => {
+        console.error(error);
+      }
+    });
   }
 
   onChange(url:any){

@@ -15,3 +15,14 @@
     color: white;
     text-decoration: none;
 }
+
+/**Propiedades de los mensajes de validacion */
+.txt_msg {
+    font-size: small;
+    font-weight: bold;
+}
+
+/*Propiedades de mat-inputs*/
+.inputs_properties {
+    width: 350px;
+}

@@ -1,0 +1,69 @@
+<div class="container my-4">
+    <div class="row g-3 align-items-center mb-3">
+        <form [formGroup]="form">
+            <h4>Aqui puedes cambiar de gimnasio</h4>
+            <div class="col-auto">
+
+            </div>
+            <div class="col-auto">
+                <mat-form-field appearance="outline" class="inputs_properties">
+                    <mat-label>Gimnasios</mat-label>
+                    <mat-select id="idGimnasio" name="idGimnasio" formControlName="idGimnasio"
+                        (ngModelChange)="infoGym(showGym.value)" #showGym>
+                        <mat-option *ngFor="let item of listaGimnasios"
+                            [value]="item.idGimnasio">{{item.nombreGym}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <button (click)="actualizar()" type="submit" class="btn btn-gym">Hacer el cambio de gimnasio</button>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <legend>Información de sucursal.</legend>
+            <div class="card bg-dark text-white" *ngFor="let gym of listaGimnasios | gimnasio:gym_ok">
+                <img src="../../../../../assets/img/img_fondo.jpg" class="card-img" alt="...">
+                <div class="card-img-overlay">
+                    <h5 class="card-title">{{ gym.nombreGym }}</h5>
+                    <p class="card-text">Aqui podras disfrutar de:</p>
+                    <p class="card-text" *ngIf="gym.bicicletero == '1' "><fa-icon id="icon_txt"
+                            [icon]="['fas', 'check']"></fa-icon> Bicicleteros </p>
+                    <p class="card-text" *ngIf="gym.casilleros == '1' "><fa-icon id="icon_txt"
+                            [icon]="['fas', 'check']"></fa-icon> Casilleros </p>
+                    <p class="card-text" *ngIf="gym.estacionamiento == '1' "><fa-icon id="icon_txt"
+                            [icon]="['fas', 'check']"></fa-icon> Estacionamiento </p>
+                    <p class="card-text" *ngIf="gym.regaderas == '1' "><fa-icon id="icon_txt"
+                            [icon]="['fas', 'check']"></fa-icon> Regaderas </p>
+                </div>
+                <div class="alert alert-light" role="alert">
+                    <label id="sub_txt"><fa-icon id="icon_txt" [icon]="['fas', 'location-dot']"></fa-icon>
+                        Dirección: {{ gym.calle}} #{{ gym.numExt }} int.{{ gym.numInt}}, col.{{ gym.colonia }}, {{
+                        gym.ciudad }}, {{ gym.estado}}, CP:{{ gym.codigoPostal }}
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <legend>Horarios de sucursal.</legend>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Dia</th>
+                        <td>Inicio</td>
+                        <td>Cierre</td>
+                    </tr>
+                    <tr *ngFor="let hora of listaHorarios | horarios:gym_ok">
+                        <th> {{ hora.diaSemana }} </th>
+                        <td> {{ hora.horaEntrada }} </td>
+                        <td> {{ hora.horaSalida }} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--
+    dame un ejemplo de (ngModelChange) con un elemento de tipo select en angular (ngModelChange)="infoGym($event)"
+    dame el mismo ejemplo pero ahora usando formularios reactivos
+-->
