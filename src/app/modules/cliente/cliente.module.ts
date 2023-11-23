@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { MiMembresiaComponent } from './components/mi-membresia/mi-membresia.component';
 import { PagosComponent } from './components/pagos/pagos.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 //Librerias correspondientes a iconos - fontawesome / matrerial icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -29,7 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
     HomeComponent,
     PerfilComponent,
     MiMembresiaComponent,
-    PagosComponent
+    PagosComponent,
   ],
   imports: [
     CommonModule,
