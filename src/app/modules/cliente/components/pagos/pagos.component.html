@@ -15,21 +15,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Enero</td>
-                        <td>15 de enero de 2023</td>
-                        <td>$50.00</td>
+                    <tr *ngFor="let compraf of datosUltimaCompra">
+                        <td> {{ obtenerMesPago(compraf.fechaInicio) }} </td>
+                        <td> {{ obtenerFechaFormateadaPago(compraf.fechaInicio) }} </td>
+                        <td> $ {{ compraf.precio }} </td>
                     </tr>
-                    <tr>
-                        <td>Febrero</td>
-                        <td>15 de febrero de 2023</td>
-                        <td>$50.00</td>
-                    </tr>
-                    <tr>
-                        <td>Marzo</td>
-                        <td>15 de marzo de 2023</td>
-                        <td>$50.00</td>
-                    </tr>
+                    
                 </tbody>
             </table>
         </div>
@@ -43,29 +34,19 @@
                 <thead>
                     <tr>
                         <th>Mes</th>
+                        <th>Membresia</th>
                         <th>Fecha de Pago</th>
                         <th>Monto Pagado</th>
                         <th>Comprobante</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Enero</td>
-                        <td>15 de enero de 2023</td>
-                        <td>$50.00</td>
+                    <tr *ngFor="let compra of compras">
+                        <td> {{ obtenerNombreMes(compra.fechaInicio) }} </td>
+                        <td> {{ compra.titulo }} </td>
+                        <td> {{ obtenerFechaFormateada(compra.fechaInicio) }} </td>
+                        <td> $ {{ compra.precio }} </td>
                         <td><a href="comprobante_enero.pdf" class="btn btn-gym">Ver Comprobante</a></td>
-                    </tr>
-                    <tr>
-                        <td>Febrero</td>
-                        <td>15 de febrero de 2023</td>
-                        <td>$50.00</td>
-                        <td><a href="comprobante_febrero.pdf" class="btn btn-gym">Ver Comprobante</a></td>
-                    </tr>
-                    <tr>
-                        <td>Marzo</td>
-                        <td>15 de marzo de 2023</td>
-                        <td>$50.00</td>
-                        <td><a href="comprobante_marzo.pdf" class="btn btn-gym">Ver Comprobante</a></td>
                     </tr>
                 </tbody>
             </table>

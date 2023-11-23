@@ -1,41 +1,153 @@
 <!DOCTYPE html>
+
 <body>
     <div class="container mt-5">
-    
-        <form>
-            <!-- Sección 1: Información personal -->
-            <h2>Información Personal</h2>
-            <div class="mb-3">
-                <label for="curp" class="form-label">CURP</label>
-                <input type="text" class="form-control" id="curp" name="curp" value="VEBM000000000" disabled>
-            </div>
-            <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" value="Miguel" disabled>
-            </div>
-            <div class="mb-3">
-                <label for="apellido_paterno" class="form-label">Apellido Paterno</label>
-                <input type="text" class="form-control" id="apellido_paterno" name="apellido_paterno" value="Perez" disabled>
-            </div>
-            <div class="mb-3">
-                <label for="apellido_materno" class="form-label">Apellido Materno</label>
-                <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" value="Ramirez" disabled>
-            </div>
-            <div class="mb-3">
-                <label for="telefono" class="form-label">Teléfono</label>
-                <input type="tel" class="form-control" id="telefono" name="telefono" value="123-456-7890">
-            </div>
-    
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="correo@cliente.com">
-            </div>
 
+        <form [formGroup]="form" (ngSubmit)="actualizar()">
+            <!-- Sección 1: Información personal -->
+            <h4>Información Personal</h4>
+            <div class="row g-3 align-items-center mb-3">
+                <mat-form-field appearance="outline" class="inputs_properties">
+                    <mat-label>Curp</mat-label>
+                    <input type="text" matInput autocomplete="off" id="curp" name="curp" formControlName="curp"
+                        [errorStateMatcher]="matcher">
+                    <mat-error *ngIf="form.get('curp')?.hasError('pattern')">
+                        <strong class="txt_msg">**Formato no valido + (18 digitos)</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="inputs_properties">
+                    <mat-label>Nombre</mat-label>
+                    <input type="text" matInput autocomplete="off" id="nombre" name="nombre" formControlName="nombre"
+                        [errorStateMatcher]="matcher">
+                    <mat-error
+                        *ngIf="form.get('nombre')?.hasError('pattern') && !form.get('nombre')?.hasError('required')">
+                        <strong class="txt_msg">**No permiten números</strong>
+                    </mat-error>
+                    <mat-error *ngIf="form.get('nombre')?.hasError('required')"><strong class="txt_msg">**Campo
+                            requerido</strong></mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="inputs_properties">
+                    <mat-label>Apellido paterno</mat-label>
+                    <input type="text" matInput autocomplete="off" id="apPaterno" name="apPaterno"
+                        formControlName="apPaterno" [errorStateMatcher]="matcher">
+                    <mat-error
+                        *ngIf="form.get('apPaterno')?.hasError('pattern') && !form.get('apPaterno')?.hasError('required')">
+                        <strong class="txt_msg">**No permiten números</strong>
+                    </mat-error>
+                    <mat-error *ngIf="form.get('apPaterno')?.hasError('required')"><strong class="txt_msg">**Campo
+                            requerido</strong></mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="inputs_properties">
+                    <mat-label>Apellido materno</mat-label>
+                    <input type="text" matInput autocomplete="off" id="apMaterno" name="apMaterno"
+                        formControlName="apMaterno" [errorStateMatcher]="matcher">
+                    <mat-error
+                        *ngIf="form.get('apMaterno')?.hasError('pattern') && !form.get('apMaterno')?.hasError('required')">
+                        <strong class="txt_msg">**No permiten números</strong>
+                    </mat-error>
+                    <mat-error *ngIf="form.get('apMaterno')?.hasError('required')"><strong class="txt_msg">**Campo
+                            requerido</strong></mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="inputs_properties">
+                    <mat-label>Teléfono</mat-label>
+                    <input type="text" matInput autocomplete="off" id="telefono" name="telefono"
+                        formControlName="telefono" [errorStateMatcher]="matcher">
+                    <mat-error
+                        *ngIf="form.get('telefono')?.hasError('pattern') && !form.get('telefono')?.hasError('required') && !form.get('telefono')?.hasError('minlength')">
+                        <strong class="txt_msg">**Solo se permiten números</strong>
+                    </mat-error>
+                    <mat-error *ngIf="form.get('telefono')?.hasError('required') && !form.get('telefono')?.hasError('minlength')"><strong class="txt_msg">**Campo
+                            requerido</strong></mat-error>
+                    <mat-error *ngIf="form.get('telefono')?.hasError('minlength')"><strong class="txt_msg">** minimo 8 digítos</strong></mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="inputs_properties">
+                    <mat-label>Email</mat-label>
+                    <input type="text" matInput autocomplete="off" id="email" name="email" formControlName="email"
+                        [errorStateMatcher]="matcher">
+                    <mat-error
+                        *ngIf="form.get('email')?.hasError('pattern') && !form.get('email')?.hasError('required')">
+                        <strong class="txt_msg">**Formato de email incorrecto</strong>
+                    </mat-error>
+                    <mat-error *ngIf="form.get('email')?.hasError('required')"><strong class="txt_msg">**Campo
+                            requerido</strong></mat-error>
+                </mat-form-field>
+            </div>
             <!-- Sección 2: Dirección -->
-            <h2>Dirección</h2>
-            <div class="mb-3">
-                <label for="direccion" class="form-label">Dirección</label>
-                <textarea class="form-control" id="direccion" name="direccion" rows="3"></textarea>
+            <h5>Dirección</h5>
+            <div class="row g-3 align-items-center mb-3">
+                <mat-form-field appearance="outline" class="inputs_properties">
+                    <mat-label>Estado</mat-label>
+                    <mat-select id="estado" formControlName="estado" id="estado" [errorStateMatcher]="matcher">
+                        <mat-option></mat-option>
+                        <mat-option *ngFor="let item of listaEstados" [value]="item.value">{{ item.viewValue
+                            }}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.get('estado')?.hasError('required')">
+                        <strong class="txt_msg">**Campo requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="inputs_properties">
+                    <mat-label>Ciudad</mat-label>
+                    <input type="text" placeholder="ciudad" matInput autocomplete="off" formControlName="ciudad"
+                        id="ciudad" [errorStateMatcher]="matcher">
+                    <mat-error
+                        *ngIf="form.get('ciudad')?.hasError('pattern') && !form.get('ciudad')?.hasError('required')">
+                        <strong class="txt_msg">**Carácter no validos</strong>
+                    </mat-error>
+                    <mat-error *ngIf="form.get('ciudad')?.hasError('required')"><strong class="txt_msg">**Campo
+                            requerido</strong></mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="inputs_properties">
+                    <mat-label>Calle</mat-label>
+                    <input type="text" placeholder="calle" matInput autocomplete="off" formControlName="calle"
+                        id="calle" [errorStateMatcher]="matcher">
+                    <mat-error
+                        *ngIf="form.get('calle')?.hasError('pattern') && !form.get('calle')?.hasError('required')">
+                        <strong class="txt_msg">**Carácter no valido</strong>
+                    </mat-error>
+                    <mat-error *ngIf="form.get('calle')?.hasError('required')"><strong class="txt_msg">**Campo
+                            requerido</strong></mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="inputs_properties">
+                    <mat-label>Colonia</mat-label>
+                    <input type="text" placeholder="colonia" matInput autocomplete="off" formControlName="colonia"
+                        id="colonia" [errorStateMatcher]="matcher">
+                    <mat-error
+                        *ngIf="form.get('colonia')?.hasError('pattern') && !form.get('colonia')?.hasError('required')">
+                        <strong class="txt_msg">**Carácter no valido</strong>
+                    </mat-error>
+                    <mat-error *ngIf="form.get('colonia')?.hasError('required')"><strong class="txt_msg">**Campo
+                            requerido</strong></mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="inputs_properties">
+                    <mat-label>Número ext.</mat-label>
+                    <input type="text" placeholder="numExt" matInput autocomplete="off" formControlName="numExt"
+                        id="numExt" [errorStateMatcher]="matcher">
+                    <mat-error
+                        *ngIf="form.get('numExt')?.hasError('pattern') && !form.get('numExt')?.hasError('required')">
+                        <strong class="txt_msg">**Solo se adminten números</strong>
+                    </mat-error>
+                    <mat-error *ngIf="form.get('numExt')?.hasError('required')"><strong class="txt_msg">**Campo
+                            requerido</strong></mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="inputs_properties">
+                    <mat-label>Número int.</mat-label>
+                    <input type="text" placeholder="numInt" matInput autocomplete="off" formControlName="numInt"
+                        id="numInt" [errorStateMatcher]="matcher">
+                    <mat-error *ngIf="form.get('numInt')?.hasError('pattern')">
+                        <strong class="txt_msg">**Solo se adminten números</strong>
+                    </mat-error>
+                </mat-form-field>
             </div>
 
             <!-- Botón de Guardar Cambios -->
@@ -43,4 +155,3 @@
         </form>
     </div>
 </body>
-

@@ -93,6 +93,7 @@ at-menu {
 	color: white;
     font-size: larger;
     margin: 0px 5px;
+    cursor: pointer;
 }
 
 #ops {

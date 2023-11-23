@@ -22,13 +22,13 @@ fa-icon {
     font-size: x-large;
 }
 
-
 /*propiedades bootstrap*/
 #cr {
-    font-size: smaller;
+    font-size: x-small;
     color: white;
 }
 
 #tag_a {
     color: white;
+    font-size: small;
 }

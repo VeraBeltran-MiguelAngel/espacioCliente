@@ -1,11 +1,3 @@
-/**propiedades body **/
-.body {
-    margin: 0;
-    position: relative;
-    padding-bottom: 139px;
-    min-height: 100vh;
-}
-
 .container {
     margin-bottom: 30px;
 }
@@ -14,4 +6,36 @@
     background: #FD9727; 
     color: white;
     text-decoration: none;
+}
+
+/*Propiedades de lo icomos de estatus de membresia*/
+#icon_status_er {
+    color: red;
+}
+
+#icon_status_ok {
+    color: green;
+}
+
+/*Propiedades textos mensajes - sugerencias*/
+#mensajes {
+    font-size: x-small;
+    display: block;
+    padding-bottom: 10px;
+}
+
+/*Porpiedades texto - subtextos en contenedores*/
+#sub_txt {
+    display: block;
+}
+
+/*Propiedades otros iconos */
+#icon_txt {
+    color: #6f42c1;
+}
+
+/*Propiedades boton detalles */
+#btns {
+    display: block;
+    margin-top: 5px;
 }
