@@ -24,7 +24,7 @@
           <div class="card-body">
             <h5 class="card-title">Detalles de proximo pago</h5>
             <label class="card-text" id="sub_txt"><strong>Cuota mensual: </strong>$ {{item.precio}}</label>
-            <label class="card-text" id="sub_txt"><strong>Vence: </strong> {{item.fechaFin}}</label>
+            <label class="card-text" id="sub_txt"><strong>Vence: </strong>  {{ obtenerFechaFormateadaPago(item.fechaFin)}}</label>
             <label id="mensajes"><strong>Recuerda renovar antes de la fecha de vencimiento...</strong></label>
             <a class="btn btn-gym" id="btns" routerLink="../pagos">Detalles</a>
           </div>
