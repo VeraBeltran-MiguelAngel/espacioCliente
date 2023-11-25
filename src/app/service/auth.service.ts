@@ -111,4 +111,18 @@ export class AuthService {
     return this.clienteHttp.get(this.Api_home+'?detalles='+id);
   }
 
+  //Datos recibo de compra - componente pagos ----------------------- Roghelio
+  reciboCompra(id: string):Observable<any> {
+    return this.clienteHttp.get<historial>(this.Api_home+'?recibo='+id);
+  }
+
+  //Datos de usuario - para actualizar local storage ----------------- Roghelio
+  actualizarLS(id: string):Observable<any> {
+    return this.clienteHttp.get(this.Api_home+'?usuario='+id);
+  }
+
+  //Traer el dato correspondiente al token para asignar al QR -------- Roghelio
+  getToken(id: string):Observable<any> {
+    return this.clienteHttp.get<mensaje>(this.Api_home+'?acceso='+id);
+  }
 }

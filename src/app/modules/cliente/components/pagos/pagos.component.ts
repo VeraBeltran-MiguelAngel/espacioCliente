@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogReciboComponent } from '../dialog-recibo/dialog-recibo.component';
 
 @Component({
   selector: 'app-pagos',
@@ -14,7 +16,9 @@ export class PagosComponent implements OnInit {
   cliente: number;
   //Almacenar la informacion de la compra
   compras: any;
-  constructor(private auth: AuthService) { }
+  //Almacenar datos de la compra
+  items: any;
+  constructor(private auth: AuthService, private dialog: MatDialog) { }
 
   //Pruebas
   fechaMasActual: any;
@@ -47,15 +51,15 @@ export class PagosComponent implements OnInit {
 
         //this.fechaMasReciente = fechaMasReciente;
         this.datosUltimaCompra = datosFiltrados;
-        console.log(this.datosUltimaCompra);
+        //console.log(this.datosUltimaCompra);
       }, error: (error) => {
         console.log(error);
       }
     });
   }
 
-   //Obtener el mes de la fecha del servicio
-   obtenerMesPago(fecha: Date): string {
+  //Obtener el mes de la fecha del servicio
+  obtenerMesPago(fecha: Date): string {
     const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     const fechaObj = new Date(fecha);
     const mesIndex = (fechaObj.getMonth() + 1);
@@ -68,7 +72,7 @@ export class PagosComponent implements OnInit {
 
     const fechaObj = new Date(fecha);
     const dia = fechaObj.getDate();
-    const mesIndex = (fechaObj.getMonth() + 1 );
+    const mesIndex = (fechaObj.getMonth() + 1);
     const anio = fechaObj.getFullYear();
 
     return `${dia} de ${meses[mesIndex]} de ${anio}`;
@@ -94,4 +98,16 @@ export class PagosComponent implements OnInit {
     return `${dia} de ${meses[mesIndex]} de ${anio}`;
   }
 
+   //Mandar a traer el MatDialog - pansadole el paramero
+  imprimirRecibo2(idCompra: string) {
+    //console.log(idCompra);
+    const dialogRef = this.dialog.open(DialogReciboComponent, {
+      //width: '800px', // Define el ancho del diálogo según tus necesidades
+      data: { idCompra } //Se pasan los datos para hacer uso de este dentro del ts del modal
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('El diálogo ha sido cerrado');
+    });
+  }
 }

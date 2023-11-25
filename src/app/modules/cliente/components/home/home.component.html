@@ -1,88 +1,90 @@
 <!DOCTYPE html>
-  <body>
-    <div class="container mt-4" *ngFor="let item of datos">
-      <h1 class="mb-3">Bienvenido {{ nombreUsuario }}</h1>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{{ item.titulo }}</h5>
-              <p class="card-text" *ngIf="estado"><fa-icon id="icon_status_ok" [icon]="['fas', 'circle-check']"></fa-icon>
-                <strong>Estatus: </strong>Membresia activa</p>
-              <p class="card-text" *ngIf="!estado"><fa-icon id="icon_status_er" [icon]="['fas', 'xmark-circle']"></fa-icon>
-                <strong> Estatus: </strong>Membresia inactiva</p>
-              <a class="btn btn-gym" routerLink="../membresia">Detalles</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Detalles de proximo pago</h5>
-              <label class="card-text" id="sub_txt"><strong>Cuota mensual: </strong>$ {{item.precio}}</label>
-              <label class="card-text" id="sub_txt"><strong>Vence: </strong> {{item.fechaFin}}</label>
-              <label id="mensajes"><strong>Recuerda renovar antes de la fecha de vencimiento...</strong></label>
-              <a class="btn btn-gym" routerLink="../pagos">Detalles</a>
-            </div>
+
+<body>
+  <div class="container mt-4" *ngFor="let item of datos">
+    <h1 class="mb-3">Bienvenido {{ nombreUsuario }}</h1>
+    <div class="row">
+      <div class="col-md-6 my-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.titulo }}</h5>
+            <p class="card-text" *ngIf="estado"><fa-icon id="icon_status_ok" [icon]="['fas', 'circle-check']"></fa-icon>
+              <strong>Estatus: </strong>Membresia activa
+            </p>
+            <p class="card-text" *ngIf="!estado"><fa-icon id="icon_status_er"
+                [icon]="['fas', 'xmark-circle']"></fa-icon>
+              <strong> Estatus: </strong>Membresia inactiva
+            </p>
+            <a class="btn btn-gym" id="btns" routerLink="../membresia">Detalles</a>
           </div>
         </div>
       </div>
-      <br />
-
-      <h3>Mi plan adquirido</h3>
-
-      <div class="row mt-4">
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body" *ngIf="estado">
-              <h5 class="card-title">Beneficios de tu plan</h5>
-              <label id="sub_txt">{{item.detalles}}</label>
-              <label id="sub_txt"><strong>Duración:</strong> {{item.duracion}} meses</label>      
-              <label id="mensajes"><strong>Sin multa por cancelación</strong></label>
-              <a class="btn btn-gym" id="btns" routerLink="../detalles/{{item.idMem}}">Detalles</a>
-            </div>
-            <div class="card-body" *ngIf="!estado">
-              <div class="alert alert-warning" role="alert">
-                Tu membresia se encuentra inactiva...
-                <div style="text-align: center;color: yellow; font-size: 50px;">
-                  <fa-icon id="icon_status" [icon]="['fas', 'triangle-exclamation']"></fa-icon>
-              </div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Tu gimnasio</h5>
-              <label class="card-text" id="sub_txt"><strong>{{item.nombreGym}}</strong></label>
-              <label id="sub_txt"><fa-icon id="icon_txt" [icon]="['fas', 'location-dot']"></fa-icon>
-              {{ item.calle}} #{{ item.numExt }} int.{{ item.numInt}}, col.{{ item.colonia }}, {{ item.ciudad }}, {{ item.estado}}, CP:{{ item.codigoPostal }}
-              </label>
-              <a class="btn btn-gym" id="btns" routerLink="../gimnasio/{{item.idGimnasio}}">Quieres cambiar de ubicacion?</a>
-            </div>
+      <div class="col-md-6 my-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Detalles de proximo pago</h5>
+            <label class="card-text" id="sub_txt"><strong>Cuota mensual: </strong>$ {{item.precio}}</label>
+            <label class="card-text" id="sub_txt"><strong>Vence: </strong> {{item.fechaFin}}</label>
+            <label id="mensajes"><strong>Recuerda renovar antes de la fecha de vencimiento...</strong></label>
+            <a class="btn btn-gym" id="btns" routerLink="../pagos">Detalles</a>
           </div>
         </div>
       </div>
+    </div>
+    <br />
 
-      <div class="row mt-4">
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body col text-center">
-              <h5 class="card-title">Tu código de acceso</h5>
-              <p class="card-text">
-                <qrcode
-                  (qrCodeURL)="onChange($event)"
-                  [qrdata]="qrdata"
-                  [width]="100"
-                ></qrcode>
-              </p>
-              <a class="btn btn-gym" id="btns" [href]="qrCodeDownloadLink" download="codigo-qr.png">Descargar QR</a>
+    <h3>Mi plan adquirido</h3>
+
+    <div class="row mt-4">
+      <div class="col-md-6 my-2">
+        <div class="card">
+          <div class="card-body" *ngIf="estado">
+            <h5 class="card-title">Beneficios de tu plan</h5>
+            <label id="sub_txt">{{item.detalles}}</label>
+            <label id="sub_txt"><strong>Duración:</strong> {{item.duracion}} meses</label>
+            <label id="mensajes"><strong>Sin multa por cancelación</strong></label>
+            <a class="btn btn-gym" id="btns" routerLink="../detalles/{{item.idMem}}">Detalles</a>
+          </div>
+          <div class="card-body" *ngIf="!estado">
+            <div class="alert alert-warning" role="alert">
+              Tu membresia se encuentra inactiva...
+              <div style="text-align: center;color: yellow; font-size: 50px;">
+                <fa-icon id="icon_status" [icon]="['fas', 'triangle-exclamation']"></fa-icon>
+              </div>
             </div>
           </div>
+
         </div>
-        <!-- <div class="col-md-6">
+      </div>
+      <div class="col-md-6 my-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Tu gimnasio</h5>
+            <label class="card-text" id="sub_txt"><strong>{{item.nombreGym}}</strong></label>
+            <label id="sub_txt"><fa-icon id="icon_txt" [icon]="['fas', 'location-dot']"></fa-icon>
+              {{ item.calle}} #{{ item.numExt }} int.{{ item.numInt}}, col.{{ item.colonia }}, {{ item.ciudad }}, {{
+              item.estado}}, CP:{{ item.codigoPostal }}
+            </label>
+            <a class="btn btn-gym" id="btns" routerLink="../gimnasio/{{item.idGimnasio}}">Quieres cambiar de
+              ubicacion?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-6 my-2">
+        <div class="card">
+          <div class="card-body col text-center">
+            <h5 class="card-title">Tu código de acceso</h5>
+            <p class="card-text">
+              <ngx-qrcode-styling [config]="config" #qrcode></ngx-qrcode-styling>
+            </p>
+            <a class="btn btn-gym" id="btns" (click)="onDownload(qrcode)">Descargar QR</a>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-6">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Notas</h5>
@@ -92,8 +94,7 @@
             </div>
           </div>
         </div> -->
-      </div>
     </div>
+  </div>
 
-  </body>
-
+</body>

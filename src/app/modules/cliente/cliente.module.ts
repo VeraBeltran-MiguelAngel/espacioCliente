@@ -12,17 +12,24 @@ import { HomeComponent } from './components/home/home.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { MiMembresiaComponent } from './components/mi-membresia/mi-membresia.component';
 import { PagosComponent } from './components/pagos/pagos.component';
+import { GimnasioComponent } from './components/gimnasio/gimnasio.component';
+import { GimnasioPipe } from './pipes/gimnasio.pipe';
+import { HorariosPipe } from './pipes/horarios.pipe';
+import { DetallesComponent } from './components/detalles/detalles.component';
+import { DialogReciboComponent } from './components/dialog-recibo/dialog-recibo.component';
 
 //Modulos correspondientes a manejo de formularios
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 
 //Libreria generador  QR
 import { QRCodeModule } from 'angularx-qrcode';
+//Libreria generador QR con logo
+import { NgxQrcodeStylingModule } from 'ngx-qrcode-styling';
 
 //Librerias correspondientes a iconos - fontawesome / matrerial icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faFacebook, faGoogle, faInstagram, faTwitter, faPaypal, faXTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faCircleUser, faCreditCard, faCheckCircle, faTriangleExclamation, faXmarkCircle, faLocationDot, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCircleUser, faCreditCard, faCheckCircle, faTriangleExclamation, faXmarkCircle, faLocationDot, faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
 //Librerias Angular Material
@@ -31,10 +38,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
-import { GimnasioComponent } from './components/gimnasio/gimnasio.component';
-import { GimnasioPipe } from './pipes/gimnasio.pipe';
-import { HorariosPipe } from './pipes/horarios.pipe';
-import { DetallesComponent } from './components/detalles/detalles.component';
+import { MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -48,7 +52,8 @@ import { DetallesComponent } from './components/detalles/detalles.component';
     GimnasioComponent,
     GimnasioPipe,
     HorariosPipe,
-    DetallesComponent
+    DetallesComponent,
+    DialogReciboComponent
   ],
   imports: [
     CommonModule,
@@ -62,6 +67,8 @@ import { DetallesComponent } from './components/detalles/detalles.component';
     ReactiveFormsModule,
     FormsModule,
     MatSelectModule,
+    MatDialogModule,
+    NgxQrcodeStylingModule
   ]
 })
 export class ClienteModule { 
@@ -79,7 +86,8 @@ export class ClienteModule {
       faTriangleExclamation,
       faXmarkCircle,
       faLocationDot,
-      faCheck 
+      faCheck,
+      faXmark 
     ); 
   }
  }
