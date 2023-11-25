@@ -46,7 +46,7 @@
                         <td> {{ compra.titulo }} </td>
                         <td> {{ obtenerFechaFormateada(compra.fechaInicio) }} </td>
                         <td> $ {{ compra.precio }} </td>
-                        <td><a href="comprobante_enero.pdf" class="btn btn-gym">Ver Comprobante</a></td>
+                        <td><a (click)="imprimirRecibo2(compra.idDetMem)" class="btn btn-gym">Ver Comprobante</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -54,3 +54,6 @@
     </div>
 
 </body>
+<!--
+    https://cssgradient.io
+-->

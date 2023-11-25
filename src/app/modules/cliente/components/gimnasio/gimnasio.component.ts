@@ -92,5 +92,22 @@ export class GimnasioComponent implements OnInit {
         console.log(error);
       }
     });
+
+    //Mandar a llamar la funcion para actualizar el LS del cliente
+    this.updateLs();
   }
+
+  //Actualizar los datos del LocalStorage
+  updateLs():void{
+    this.auth.actualizarLS(this.usuarioRegistrado[0].ID_Cliente).subscribe({
+      next: (resultData) => {
+        console.log(resultData);
+        //Actualizamos el registro del usuario en el local storage
+        this.auth.setUserData(JSON.stringify(resultData));
+      }, error: (error) => {
+        console.log(error);
+      }
+    });
+  }
+
 }

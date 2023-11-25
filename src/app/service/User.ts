@@ -68,6 +68,7 @@ export class dataHoraios {
 
 //Historial de compras
 export class historial {
+  idDetMem!: string;
   nombreGym!: string;
   titulo!: string;
   precio!: number;

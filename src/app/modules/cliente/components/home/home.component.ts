@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SafeValue } from '@angular/platform-browser';//para redireccionar a una liga segura
 import { AuthService } from 'src/app/service/auth.service';
+import { Options } from 'ngx-qrcode-styling';
 
 @Component({
   selector: 'app-home',
@@ -8,15 +9,35 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  //Propiedades de codigo QR - generador con logo
+  public config: Options = {
+    template: "default",
+    type: "canvas",
+    shape: "square",
+    width: 200,
+    height: 200,
+    data: '',
+    image: "../../../../../assets/img/logo2.png",
+    margin: 5,
+    dotsOptions: {
+      color: "#FD9727",
+      type: "rounded"
+    },
+    backgroundOptions: {
+      color: "#ffffff",
+    },
+    imageOptions: {
+      crossOrigin: "anonymous",
+      margin: 0
+    }
+  };
+  //Propiedades de la libreria
+  //https://stackblitz.com/edit/angular-ngx-qrcode-styling?file=src%2Fapp%2Fapp.component.html,src%2Fapp%2Fapp.component.ts
 
   //para poder usar los valores del local(solo es un string) storage tienes que crear un arreglo
   usuarioRegistrado: any[] = [];
   nombreUsuario :string;
   correo:string;
-
-   //para crear qr
-   qrdata :any;
-   qrCodeDownloadLink :SafeValue='';
 
   //Variable que contendra los datos retornados por el servicio datosUsuario
   datos: any;
@@ -27,9 +48,6 @@ export class HomeComponent implements OnInit {
   constructor(private auth: AuthService) {}
 
   ngOnInit() {
-    //para activar el debug en consola
-    // debugger;
-
     //guardar la cadena del local storage (contiene la info del usuario)
     const localData = this.auth.getUserData(); 
 
@@ -39,11 +57,17 @@ export class HomeComponent implements OnInit {
       //accedemos al indice 0 (por que solo es un registro) al indice name
       this.nombreUsuario = this.usuarioRegistrado[0].nombre;
       this.correo=this.usuarioRegistrado[0].email;
-      this.qrdata=this.correo; //guardamos el correo del usuario que inicia sesion en el QR 
-      this.nombreUsuario = this.usuarioRegistrado[0].nombre;
     }
 
-    //console.log(this.usuarioRegistrado);
+    //Mandar a traer la informacion del estatus de la membresia - obtener valor del token
+    this.auth.getToken(this.usuarioRegistrado[0].ID_Cliente).subscribe({
+      next: (resultEstatus) => {
+        //console.log(resultEstatus);
+        this.config.data = resultEstatus.msg;
+      }, error: (error) => { console.log(error) }
+    });
+
+
     //Mandar a traer los datos del usuario/gymnasio/membresia/...
     this.auth.datosUsuario(this.usuarioRegistrado[0].ID_Cliente).subscribe({ 
       next: (resultData) => {
@@ -59,7 +83,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  onChange(url:any){
-    this.qrCodeDownloadLink = url;
+  //Descargar imagen del QR
+  onDownload(qrcode: any): void {
+    qrcode.download('codigo-qr.png').subscribe((res: any) => {
+      // TO DO something!
+      console.log('download:', res);
+    });
   }
+
 }
