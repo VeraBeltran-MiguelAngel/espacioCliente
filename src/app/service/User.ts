@@ -27,8 +27,8 @@ export class detalles {
   estado!: string;
   codigoPostal!: string;
   idDetMem!: string;
-  fechaInicio!: string;
-  fechaFin!: string;
+  fechaInicio!: Date;
+  fechaFin!: Date;
   estatus!: string;
 }
 

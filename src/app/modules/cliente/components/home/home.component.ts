@@ -91,4 +91,16 @@ export class HomeComponent implements OnInit {
     });
   }
 
+   //Obtener el formato de salida: 21 de noviembre de 2023
+   obtenerFechaFormateadaPago(fecha: Date): string {
+    const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+    const fechaObj = new Date(fecha);
+    const dia = fechaObj.getDate();
+    const mesIndex = (fechaObj.getMonth() + 1);
+    const anio = fechaObj.getFullYear();
+
+    return `${dia} de ${meses[mesIndex]} de ${anio}`;
+  }
+  
 }
