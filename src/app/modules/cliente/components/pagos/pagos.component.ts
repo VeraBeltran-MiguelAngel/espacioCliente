@@ -61,8 +61,8 @@ export class PagosComponent implements OnInit {
   //Obtener el mes de la fecha del servicio
   obtenerMesPago(fecha: Date): string {
     const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-    const fechaObj = new Date(fecha);
-    const mesIndex = (fechaObj.getMonth() + 1);
+    const fechaObj = new Date(fecha) ;
+    const mesIndex = (fechaObj.getMonth() );
     return meses[mesIndex];
   }
 
@@ -71,8 +71,8 @@ export class PagosComponent implements OnInit {
     const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 
     const fechaObj = new Date(fecha);
-    const dia = fechaObj.getDate();
-    const mesIndex = (fechaObj.getMonth() + 1);
+    const dia = fechaObj.getDate() + 1;
+    const mesIndex = (fechaObj.getMonth() );
     const anio = fechaObj.getFullYear();
 
     return `${dia} de ${meses[mesIndex]} de ${anio}`;
@@ -91,7 +91,7 @@ export class PagosComponent implements OnInit {
     const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 
     const fechaObj = new Date(fecha);
-    const dia = fechaObj.getDate();
+    const dia = fechaObj.getDate() + 1;
     const mesIndex = fechaObj.getMonth();
     const anio = fechaObj.getFullYear();
 

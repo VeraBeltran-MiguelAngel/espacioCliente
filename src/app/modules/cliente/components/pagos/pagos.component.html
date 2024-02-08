@@ -16,11 +16,10 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let compraf of datosUltimaCompra">
-                        <td> {{ obtenerMesPago(compraf.fechaInicio) }} </td>
-                        <td> {{ obtenerFechaFormateadaPago(compraf.fechaInicio) }} </td>
+                        <td> {{ obtenerMesPago(compraf.fechaFin) }} </td>
+                        <td> {{ obtenerFechaFormateadaPago(compraf.fechaFin) }} </td>
                         <td> $ {{ compraf.precio }} </td>
                     </tr>
-                    
                 </tbody>
             </table>
         </div>
