@@ -24,7 +24,9 @@
           <div class="card-body">
             <h5 class="card-title">Detalles de proximo pago</h5>
             <label class="card-text" id="sub_txt"><strong>Cuota mensual: </strong>$ {{item.precio}}</label>
-            <label class="card-text" id="sub_txt"><strong>Vence: </strong>  {{ obtenerFechaFormateadaPago(item.fechaFin)}}</label>
+            <label class="card-text" id="sub_txt">
+              <strong>Vence: </strong> {{ formatDate(item.fechaFin) }}
+            </label>
             <label id="mensajes"><strong>Recuerda renovar antes de la fecha de vencimiento...</strong></label>
             <a class="btn btn-gym" id="btns" routerLink="../pagos">Detalles</a>
           </div>
@@ -41,7 +43,7 @@
           <div class="card-body" *ngIf="estado">
             <h5 class="card-title">Beneficios de tu plan</h5>
             <label id="sub_txt">{{item.detalles}}</label>
-            <label id="sub_txt"><strong>Duración:</strong> {{item.duracion}} meses</label>
+            <label id="sub_txt"><strong>Duración:</strong> {{item.duracion}} días</label>
             <label id="mensajes"><strong>Sin multa por cancelación</strong></label>
             <a class="btn btn-gym" id="btns" routerLink="../detalles/{{item.idMem}}">Detalles</a>
           </div>

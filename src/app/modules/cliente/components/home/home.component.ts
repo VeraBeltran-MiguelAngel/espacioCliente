@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit {
     this.auth.datosUsuario(this.usuarioRegistrado[0].ID_Cliente).subscribe({ 
       next: (resultData) => {
         this.datos = resultData;
-        //console.log(this.datos);
+        console.log(this.datos, "datos");
         
         //Mostrar mensaje deacuerdo al estatus del status de la membresia del usuario
         this.datos[0].estatus == '1' ? this.estado=true : this.estado = false;
@@ -91,16 +91,25 @@ export class HomeComponent implements OnInit {
     });
   }
 
-   //Obtener el formato de salida: 21 de noviembre de 2023
-   obtenerFechaFormateadaPago(fecha: Date): string {
+  formatDate(fecha: string): string {
     const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-
+  
     const fechaObj = new Date(fecha);
-    const dia = fechaObj.getDate();
-    const mesIndex = (fechaObj.getMonth() + 1);
+    const dia = fechaObj.getDate() + 1;
+    const mesIndex = fechaObj.getMonth();
     const anio = fechaObj.getFullYear();
-
+  
     return `${dia} de ${meses[mesIndex]} de ${anio}`;
   }
+  
+  
+  
+
+
+ 
+  
+
+  
+  
   
 }

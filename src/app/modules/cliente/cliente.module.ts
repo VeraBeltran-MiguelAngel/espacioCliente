@@ -27,11 +27,9 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { NgxQrcodeStylingModule } from 'ngx-qrcode-styling';
 
 //Librerias correspondientes a iconos - fontawesome / matrerial icons
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faFacebook, faGoogle, faInstagram, faTwitter, faPaypal, faXTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faCircleUser, faCreditCard, faCheckCircle, faTriangleExclamation, faXmarkCircle, faLocationDot, faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-
+import { faCircleUser, faCreditCard, faCheckCircle, faTriangleExclamation, faXmarkCircle, faLocationDot, faCheck, faXmark, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 //Librerias Angular Material
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -39,6 +37,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { MatDialogModule} from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 @NgModule({
   declarations: [
@@ -68,7 +68,8 @@ import { MatDialogModule} from '@angular/material/dialog';
     FormsModule,
     MatSelectModule,
     MatDialogModule,
-    NgxQrcodeStylingModule
+    NgxQrcodeStylingModule,
+    MatMenuModule
   ]
 })
 export class ClienteModule { 
@@ -87,7 +88,8 @@ export class ClienteModule {
       faXmarkCircle,
       faLocationDot,
       faCheck,
-      faXmark 
+      faXmark,
+      faPowerOff
     ); 
   }
  }
